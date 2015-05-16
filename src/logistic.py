@@ -59,6 +59,19 @@ def sigmoid(x):
     return 1.0 / (1.0 + exp(-1.0 * x))
 
 
-def optimize(theta, X, y):
-    pass
+def train(theta, X, y):
+    """Given a starting point, return an array containing parameters which 
+    minimize the cost function. 
+
+    :param theta: A 1-D vector of length m containing an initial starting point
+        for the model parameters
+    :type theta: numpy.array
+    :param X: An n x m  matrix containing the input data
+    :type X: numpy.matrix
+    :param y: A row vector of length n containing the predictions of the 
+        training set
+    :type y: numpy.matrix
+    :rtype: numpy.array
+    """
+    return optimize.fmin_cg(cost, theta, args=(X, y))
 
