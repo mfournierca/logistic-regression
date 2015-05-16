@@ -1,8 +1,9 @@
 import pandas as pd
 from os import path
+from numpy import matrix, array, ones
 
 
-def parse_data(data_root, data_file="spambase.data"):
+def parse(data_root, data_file="spambase.data"):
     df = pd.read_csv(
         path.join(data_root, data_file), 
         header=None, 
@@ -19,3 +20,21 @@ def header_names(data_root, names_file="spambase.names"):
                 names.append(e[:e.index(":")])
     names.append("spam")
     return names
+
+
+def get_data(data_root):
+    df = parse(data_root)
+    ncol = len(df.columns)
+    
+    # an initial guess of the parameter vector
+    theta = ones(ncol - 1)
+
+    # the data matrix
+    X = df.ix[:, :(ncol - 1)]
+    X = matrix(X)
+
+    # the predictions
+    y = df.ix[:, (ncol - 1):]
+    y = matrix(y)
+    
+    return theta, X, y
