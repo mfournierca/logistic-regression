@@ -2,16 +2,16 @@ from math import exp
 from numpy import vectorize, ones, matrix, log
 
 
-def cost(X, y, theta):
+def cost(theta, X, y):
     """Compute the cost for a given value of the training data and parameters.    
     
+    :param theta: A column vector of length m containing the model parameters
+    :type theta: numpy.matrix
     :param X: An n x m  matrix containing the input data
     :type X: numpy.matrix
     :param y: A row vector of length n containing the predictions of the 
         training set
     :type y: numpy.matrix
-    :param theta: A column vector of length m containing the model parameters
-    :type theta: numpy.matrix
     :rtype: float
     """
     
@@ -21,8 +21,8 @@ def cost(X, y, theta):
     assert m == theta.shape[0], "number of columns in X does not match theta"
     
     j = (1.0 / float(n)) * (
-        matrix(-1.0) * y.transpose() * log(predict(X, theta)) -
-        (ones((1, n)) - y.transpose()) * log(ones((n, 1)) - predict(X, theta))
+        matrix(-1.0) * y.transpose() * log(predict(theta, X)) -
+        (ones((1, n)) - y.transpose()) * log(ones((n, 1)) - predict(theta, X))
     )
     return float(j)
 
@@ -35,13 +35,13 @@ def gradient():
     pass
 
 
-def predict(X, theta):
+def predict(theta, X):
     """Create a vector of predictions.
 
-    :param X: An n x m matrix containing the input data
-    :type X: numpy.matrix
     :param theta: A column vector of length m containing the model parameters
     :type theta: numpy.matrix
+    :param X: An n x m matrix containing the input data
+    :type X: numpy.matrix
     :rtype: numpy.matrix
     """
     return vectorize(sigmoid)(X*theta)
