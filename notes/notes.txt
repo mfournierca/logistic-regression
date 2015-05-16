@@ -1,0 +1,10 @@
+TODO:
+
+- sigmoid
+- cost function
+- regularized cost
+
+- download data
+- split train / cv / test
+- try the algorithm
+
