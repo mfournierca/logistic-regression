@@ -1,5 +1,5 @@
 from math import exp
-from numpy import vectorize
+from numpy import vectorize, ones, matrix, log
 
 
 def cost(X, y, theta):
@@ -7,16 +7,31 @@ def cost(X, y, theta):
     
     :param X: An n x m  matrix containing the input data
     :type X: numpy.matrix
-    :param y: A row vector of length m containing the predictions of the 
+    :param y: A row vector of length n containing the predictions of the 
         training set
     :type y: numpy.matrix
-    :param theta: A column vector of length n containing the model parameters
+    :param theta: A column vector of length m containing the model parameters
     :type theta: numpy.matrix
+    :rtype: float
     """
-    pass
+    
+    n, m = X.shape
+ 
+    assert n == y.shape[0], "number of rows in X does not match y"
+    assert m == theta.shape[0], "number of columns in X does not match theta"
+    
+    j = (1.0 / float(n)) * (
+        matrix(-1.0) * y.transpose() * log(predict(X, theta)) -
+        (ones((1, n)) - y.transpose()) * log(ones((n, 1)) - predict(X, theta))
+    )
+    return float(j)
 
 
 def regularized_cost():
+    pass
+
+
+def gradient():
     pass
 
 
