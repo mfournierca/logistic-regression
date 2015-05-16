@@ -1,5 +1,4 @@
-from math import exp
-from numpy import vectorize, ones, matrix, log
+from numpy import vectorize, ones, matrix, log, exp
 from scipy import optimize
 
 
