@@ -1,7 +1,7 @@
 import pandas as pd
 from os import path
-from numpy import matrix, array, ones
-from random import random
+from numpy import matrix, array
+from random import gauss
 
 
 def parse(data_root, data_file="spambase.data"):
@@ -28,7 +28,7 @@ def get_data(data_root):
     ncol = len(df.columns)
     
     # an initial guess of the parameter vector
-    theta = array([random() for i in range(ncol - 1)])
+    theta = array([gauss(0, 0.1) for i in range(ncol - 1)])
 
     # get and standardize the data matrix
     X = df.ix[:, :(ncol - 1)]
