@@ -1,10 +1,16 @@
 TODO:
 
-- sigmoid
-- cost function
+DONE - sigmoid
+DONE - cost function
+DONE - train
 - regularized cost
+- gradient function for optimization
+- test against scipy logistic regression
 
 - download data
 - split train / cv / test
 - try the algorithm
+
+- overfitting 
+- bias vs variance
 
