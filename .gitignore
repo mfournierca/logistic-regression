@@ -1,1 +1,5 @@
 data/
+src/__init__.pyc 
+src/logistic.pyc
+*/*.pyc
+*.pyc
