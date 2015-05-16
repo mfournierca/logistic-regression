@@ -30,8 +30,9 @@ def get_data(data_root):
     # an initial guess of the parameter vector
     theta = array([random() for i in range(ncol - 1)])
 
-    # the data matrix
+    # get and standardize the data matrix
     X = df.ix[:, :(ncol - 1)]
+    X = (X - X.mean()) / X.std()
     X = matrix(X)
 
     # the predictions
@@ -39,3 +40,4 @@ def get_data(data_root):
     y = matrix(y)
     
     return theta, X, y
+
