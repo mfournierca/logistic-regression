@@ -3,3 +3,4 @@ src/__init__.pyc
 src/logistic.pyc
 */*.pyc
 *.pyc
+.ipynb_checkpoints/
