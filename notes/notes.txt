@@ -3,9 +3,16 @@ TODO:
 DONE - sigmoid
 DONE - cost function
 DONE - train
-- regularized cost
-- gradient function for optimization
+- add constant term on feature vector
 - test against scipy logistic regression
+
+notebook:
+
+- dealing with large / small values
+- randomly initializing the parameters
+- regularized cost
+- include the gradient
+
 
 - download data
 - split train / cv / test

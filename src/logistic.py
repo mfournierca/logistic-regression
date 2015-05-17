@@ -1,4 +1,4 @@
-from numpy import vectorize, ones, matrix, log, exp
+from numpy import vectorize, ones, matrix, log, exp, float
 from scipy import optimize
 
 
@@ -26,14 +26,6 @@ def cost(theta, X, y):
         (ones((1, n)) - y.transpose()) * log(ones((n, 1)) - predict(theta, X))
     )
     return float(j)
-
-
-def regularized_cost():
-    pass
-
-
-def gradient():
-    pass
 
 
 def predict(theta, X):
