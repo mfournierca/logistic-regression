@@ -2,7 +2,7 @@ from numpy import vectorize, ones, matrix, log, exp, float
 from scipy import optimize
 
 
-def cost(theta, X, y):
+def cost(theta, X, y, l=1.0):
     """Compute the cost for a given value of the training data and parameters.    
     
     :param theta: A 1-D vector of length m containing the model parameters
@@ -12,6 +12,8 @@ def cost(theta, X, y):
     :param y: A row vector of length n containing the predictions of the 
         training set
     :type y: numpy.matrix
+    :param l: the lambda parameter for regularization
+    :type l: float
     :rtype: float
     """
     
@@ -24,7 +26,7 @@ def cost(theta, X, y):
     j = (1.0 / float(n)) * (
         matrix(-1.0) * y.transpose() * log(predict(theta, X)) -
         (ones((1, n)) - y.transpose()) * log(ones((n, 1)) - predict(theta, X))
-    )
+    ) + l * float(theta.transpose() * theta)
     return float(j)
 
 
