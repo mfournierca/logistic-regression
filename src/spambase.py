@@ -35,11 +35,15 @@ def read_data(spambase_root=None, test_ratio=0.33, random_seed=1):
 
     # get the data
     df = parse(spambase_root)
+
+    # add a constant term to simulate x0 = 1, i.e. make x0p0 a constant term
+    df.insert(0, "constant_term", 1)
     ncol = len(df.columns)
   
     # split into training and test sets
     dftrain, dftest = train_test_split(df, 
-        test_size=test_ratio, random_state=random_seed) 
+        test_size=test_ratio, 
+        random_state=random_seed) 
     
     # get and standardize the feature vectors 
     Xtrain = dftrain.ix[:, :(ncol - 1)]
