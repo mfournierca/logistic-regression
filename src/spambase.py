@@ -3,7 +3,7 @@ import zipfile
 from os import path
 from sklearn.cross_validation import train_test_split
 from numpy import matrix, array
-from random import gauss
+from random import gauss, seed
 from urllib import urlretrieve
 
 DATA_ROOT = path.join(path.dirname(__file__), "..", "data") 
@@ -59,6 +59,7 @@ def read_data(spambase_root=None, test_ratio=0.33, random_seed=1):
     ytest = matrix(ytest)
      
     # randomly initialize the parameter vector
+    seed(random_seed)
     theta = array([gauss(0, 0.1) for i in range(ncol - 1)])
 
     return theta, Xtrain, Xtest, ytrain, ytest
