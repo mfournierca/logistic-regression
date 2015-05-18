@@ -35,9 +35,6 @@ def read_data(spambase_root=None, test_ratio=0.33, random_seed=1):
 
     # get the data
     df = parse(spambase_root)
-
-    # add a constant term to simulate x0 = 1, i.e. make x0p0 a constant term
-    df.insert(0, "constant_term", 1)
     ncol = len(df.columns)
   
     # split into training and test sets
@@ -47,7 +44,7 @@ def read_data(spambase_root=None, test_ratio=0.33, random_seed=1):
     
     # get and standardize the feature vectors 
     Xtrain = dftrain.ix[:, :(ncol - 1)]
-    Xtrain = (Xtrain - Xtrain.mean()) / Xtrain.std() 
+    Xtrain = (Xtrain - Xtrain.mean()) / Xtrain.std()
     
     Xtest = dftest.ix[:, :(ncol - 1)]
     Xtest = (Xtest - Xtest.mean()) / Xtest.std()
@@ -55,7 +52,12 @@ def read_data(spambase_root=None, test_ratio=0.33, random_seed=1):
     # get the class labels
     ytrain = dftrain.ix[:, (ncol - 1):]
     ytest = dftest.ix[:, (ncol - 1):]
-    
+        
+    # add a constant column to simulate x0p0 being constant
+    Xtrain.insert(0, "constant_term", 1) 
+    Xtest.insert(0, "constant_term", 1)
+    ncol += 1
+
     # convert to matrices
     Xtrain = matrix(Xtrain)
     Xtest = matrix(Xtest)
